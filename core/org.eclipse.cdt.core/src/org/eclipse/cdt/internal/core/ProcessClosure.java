@@ -49,6 +49,10 @@ public class ProcessClosure {
 			try {
 				try {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(fInputStream));
+					/**
+					 * Each time read one line then write to the console.
+					 * 
+					 */
 					String line;
 					while ((line = reader.readLine()) != null) {
 						line += lineSeparator;
@@ -141,6 +145,15 @@ public class ProcessClosure {
 		fOutputReader = new ReaderThread(group, "OutputReader", stdin, fOutput); //$NON-NLS-1$
 		fErrorReader = new ReaderThread(group, "ErrorReader", stderr, fError); //$NON-NLS-1$
 
+		/**
+		 * Here the output of compilers and linkers isn's shown on the console.
+		 * 
+		 * we use two reader thread to deal with the output.Function start() then jumps into the
+		 * 
+		 * function run().
+		 * 
+		 */
+		
 		fOutputReader.start();
 		fErrorReader.start();
 	}
